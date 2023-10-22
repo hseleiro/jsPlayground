@@ -69,7 +69,55 @@ const ll = new LinkedList();
 
 //ll.printListData();
 
-class Animal {
+class Expense {
+	constructor(cost, name, date = new Date()) {
+		this.cost = cost;
+		this.name = name;
+		this.date = date;
+	}
+
+	addVat(vatRate) {
+		let vatAmount = 0;
+		let totalAmount = 0;
+		vatAmount = this.cost * (vatRate / 100);
+		totalAmount = this.cost + vatAmount;
+		console.log(`${vatRate}% vat rate adds ${vatAmount} to your exepense`);
+		console.log(`The total of your expense is ${totalAmount}`);
+	}
+
+	logExpense() {
+		console.log('name :', this.name);
+		console.log('date :', this.date);
+		console.log('type :', this.type);
+	}
+}
+
+class FoodExpense extends Expense {
+	constructor(cost, name, type) {
+		super(cost, name)
+		this.type = type;
+	}
+
+}
+
+class HouseExpense extends Expense {
+	constructor(cost, name, date) {
+		super(cost, name, date)
+	}
+}
+
+
+const foodExpense = new FoodExpense(100, 'vegi', 'processed');
+const houseExpense = new HouseExpense(200, 'seguro', new Date());
+
+foodExpense.logExpense();
+houseExpense.logExpense();
+
+foodExpense.addVat(23);
+houseExpense.addVat(23);
+
+
+/*class Animal {
   constructor(name) {
     this.name = name;
   }
